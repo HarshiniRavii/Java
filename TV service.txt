@@ -1,0 +1,79 @@
+package TVMiniProject;
+
+import java.util.Scanner;
+
+import IPLMP.IPL;
+import IPLMP.IPLDAOImplementation;
+
+import java.sql.SQLException;
+import java.util.List;
+
+public class TVService {
+
+	public void ViewTV() throws ClassNotFoundException, SQLException
+	{
+		List<TV>list=new TVDAOImplementation().findAll();
+		for(TV t:list)
+		{
+			System.out.println(t);
+		}
+		
+	}
+	public void insertTV() throws ClassNotFoundException, SQLException
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the TvId");
+		int TvId=sc.nextInt();
+		System.out.println("enter the TvBrand");
+		String TvBrand=sc.next();
+		System.out.println("enter the TvPrice");
+		int TvPrice=sc.nextInt();
+		System.out.println("enter the TvSize");
+		String TvSize=sc.next();
+		System.out.println("enter the TvColour");
+		String TvColour=sc.next();
+		TV t=new TV();
+		t.setTvId(TvId);
+		t.setTvBrand(TvBrand);
+		t.setTvPrice(TvPrice);
+		t.setTvSize(TvSize);
+		t.setTvColour(TvColour);
+		
+		new TVDAOImplementation().insertTV(t);
+	}
+	
+	public void updateTV() throws ClassNotFoundException, SQLException
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the TvBrand");
+		String TvBrand=sc.next();
+		System.out.println("enter the TvPrice");
+		int TvPrice=sc.nextInt();
+		System.out.println("enter the TvSize");
+		String TvSize=sc.next();
+		System.out.println("enter the TvColour");
+		String TvColour=sc.next();
+		System.out.println("enter the TvId");
+		int TvId=sc.nextInt();
+		TV t=new TV();
+		t.setTvBrand(TvBrand);
+		t.setTvPrice(TvPrice);
+		t.setTvSize(TvSize);
+		t.setTvColour(TvColour);
+		t.setTvId(TvId);
+		new TVDAOImplementation().updateTV(t);
+	}
+	
+	
+	public void deleteTV() throws ClassNotFoundException, SQLException
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the TvId");
+		int TvId=sc.nextInt();
+		
+		TV t=new TV(); 
+		t.setTvId(TvId);
+			
+		new TVDAOImplementation().deleteTV(t);
+	}
+}

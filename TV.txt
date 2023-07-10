@@ -1,0 +1,72 @@
+package TVMiniProject;
+
+public class TV {
+
+	private int tvId;
+	private String tvBrand;
+	private int tvPrice;
+	private String tvSize;
+	private String tvColour;
+	
+	public TV()
+	{
+		
+	}
+
+	public TV(int tvId, String tvBrand, int tvPrice, String tvSize, String tvColour) {
+		super();
+		this.tvId = tvId;
+		this.tvBrand = tvBrand;
+		this.tvPrice = tvPrice;
+		this.tvSize = tvSize;
+		this.tvColour = tvColour;
+	}
+
+	public int getTvId() {
+		return tvId;
+	}
+
+	public void setTvId(int tvId) {
+		this.tvId = tvId;
+	}
+
+	public String getTvBrand() {
+		return tvBrand;
+	}
+
+	public void setTvBrand(String tvBrand) {
+		this.tvBrand = tvBrand;
+	}
+
+	public int getTvPrice() {
+		return tvPrice;
+	}
+
+	public void setTvPrice(int tvPrice) {
+		this.tvPrice = tvPrice;
+	}
+
+	public String getTvSize() {
+		return tvSize;
+	}
+
+	public void setTvSize(String tvSize) {
+		this.tvSize = tvSize;
+	}
+
+	public String getTvColour() {
+		return tvColour;
+	}
+
+	public void setTvColour(String tvColour) {
+		this.tvColour = tvColour;
+	}
+
+	@Override
+	public String toString() {
+		return "TV [tvId=" + tvId + ", tvBrand=" + tvBrand + ", tvPrice=" + tvPrice + ", tvSize=" + tvSize
+				+ ", tvColour=" + tvColour + "]";
+	}
+
+	
+}

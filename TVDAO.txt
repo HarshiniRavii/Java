@@ -1,0 +1,12 @@
+package TVMiniProject;
+
+import java.sql.SQLException;
+import java.util.List;
+
+public interface TVDAO {
+
+	public List<TV>findAll() throws ClassNotFoundException, SQLException;
+	public void insertTV(TV t) throws ClassNotFoundException, SQLException;
+	public void updateTV(TV t) throws ClassNotFoundException, SQLException;
+	public void deleteTV(TV t) throws ClassNotFoundException, SQLException;
+}

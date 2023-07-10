@@ -1,0 +1,79 @@
+package TVMiniProject;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import IPLMP.IPL;
+
+public class TVDAOImplementation implements TVDAO{
+
+	@Override
+	public List<TV> findAll() throws ClassNotFoundException, SQLException {
+		ArrayList<TV>list=new ArrayList<TV>();
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hari","root","root");
+		PreparedStatement ps=con.prepareStatement("select * from TV");
+		ResultSet rs=ps.executeQuery();
+		while(rs.next())
+		{
+			TV t=new TV();
+			t.setTvId(rs.getInt(1));
+			t.setTvBrand(rs.getString(2));
+			t.setTvPrice(rs.getInt(3));
+			t.setTvSize(rs.getString(4));
+			t.setTvColour(rs.getString(5));
+			list.add(t);
+		}
+		System.out.println("created successfully");
+		return list;
+	
+	}
+
+	@Override
+	public void insertTV(TV t) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hari","root","root");
+		PreparedStatement ps=con.prepareStatement("insert into tv values(?,?,?,?,?) ");
+		ps.setInt(1, t.getTvId());
+		ps.setString(2, t.getTvBrand());
+		ps.setInt(3, t.getTvPrice());
+		ps.setString(4, t.getTvSize());
+		ps.setString(5, t.getTvColour());
+		ps.executeUpdate();
+		con.close();
+		
+	}
+
+	@Override
+	public void updateTV(TV t) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hari","root","root");
+		PreparedStatement ps=con.prepareStatement("update TV set TvBrand=?,TvPrice=?,TvSize=?,TvColour=? where TvId=?");
+		ps.setString(1, t.getTvBrand());
+		ps.setInt(2, t.getTvPrice());
+		ps.setString(3, t.getTvSize());
+		ps.setString(4, t.getTvColour());
+		ps.setInt(5, t.getTvId());
+		ps.executeUpdate();
+		con.close();
+				
+	}
+
+	@Override
+	public void deleteTV(TV t) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hari","root","root");
+		PreparedStatement ps=con.prepareStatement("delete from TV where Tvid=?");
+		ps.setInt(1, t.getTvId());
+		ps.executeUpdate();
+		con.close();
+		
+		
+	}
+
+}
